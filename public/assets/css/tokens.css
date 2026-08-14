@@ -1,0 +1,114 @@
+/* ==========================================================================
+   SDICMS — Design Tokens
+   Single source of truth for colour, spacing, radius, type and motion.
+   Nothing in this file draws anything. Every other stylesheet reads from here.
+   ========================================================================== */
+
+:root {
+
+  /* --- Core surfaces ------------------------------------------------------
+     Three depths only. Background sits behind everything, surface is the
+     sidebar/topbar chrome, card is anything that floats above the page.     */
+  --bg:            #0B1020;
+  --surface:       #121A2B;
+  --card:          #1B263B;
+
+  /* --- Brand ----------------------------------------------------------------
+     SAPS-inspired: navy blue as the primary command colour, gold as the
+     standout accent. Deliberately an original mark, not the official SAPS
+     crest — the coat-of-arms emblem is protected government insignia and
+     has no place on a student project that could be mistaken for it.        */
+  --primary:       #1B4B91;
+  --primary-soft:  rgba(27, 75, 145, 0.16);
+  --secondary:     #0A2748;
+  --accent:        #D4AF37;
+  --accent-soft:   rgba(212, 175, 55, 0.14);
+
+  /* The AI copilot keeps a distinct violet so its suggestions always read
+     as "the algorithm said this", never as official SAPS chrome.            */
+  --ai-accent:      #7C3AED;
+  --ai-accent-soft: rgba(124, 58, 237, 0.14);
+
+  /* --- Status -------------------------------------------------------------
+     Used for case priority, evidence verification and system health.        */
+  --success:       #22C55E;
+  --success-soft:  rgba(34, 197, 94, 0.14);
+  --warning:       #F59E0B;
+  --warning-soft:  rgba(245, 158, 11, 0.14);
+  --danger:        #EF4444;
+  --danger-soft:   rgba(239, 68, 68, 0.14);
+
+  /* --- Text ---------------------------------------------------------------
+     Pure white is reserved for headings and key figures. Long-form body copy
+     uses a slightly cooled white so it stays readable across a full shift.  */
+  --text:          #FFFFFF;
+  --text-body:     #E2E8F0;
+  --muted:         #94A3B8;
+  --muted-dim:     #64748B;
+
+  /* --- Lines & glass ------------------------------------------------------ */
+  --line:          rgba(148, 163, 184, 0.14);
+  --line-strong:   rgba(148, 163, 184, 0.28);
+  --glass:         rgba(27, 38, 59, 0.62);
+  --glass-hi:      rgba(255, 255, 255, 0.04);
+
+  /* --- Spacing (8px system) ---------------------------------------------- */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  24px;
+  --s-6:  32px;
+  --s-7:  40px;
+  --s-8:  48px;
+  --s-9:  64px;
+  --s-10: 80px;
+
+  /* --- Radius -------------------------------------------------------------
+     Large radii on floating cards, tight radii on data rows and controls so
+     tables still read as precise.                                           */
+  --r-xs:   8px;
+  --r-sm:   12px;
+  --r-md:   16px;
+  --r-lg:   24px;
+  --r-xl:   28px;
+  --r-pill: 999px;
+
+  /* --- Type ---------------------------------------------------------------
+     Mono is not decorative here: case numbers, exhibit IDs, hashes and
+     timestamps are always mono so an officer can scan them like a reference. */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  --fs-display: 30px;
+  --fs-h1:      22px;
+  --fs-h2:      17px;
+  --fs-h3:      15px;
+  --fs-body:    14px;
+  --fs-sm:      13px;
+  --fs-xs:      12px;
+  --fs-micro:   11px;
+
+  --lh-tight: 1.2;
+  --lh-body:  1.6;
+
+  /* --- Elevation ---------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.34);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.46);
+  --shadow-glow: 0 0 0 1px rgba(27, 75, 145, 0.40), 0 12px 40px rgba(27, 75, 145, 0.22);
+
+  /* --- Motion -------------------------------------------------------------
+     One easing curve everywhere. Consistency reads as quality.              */
+  --ease:      cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:  140ms;
+  --dur-mid:   240ms;
+  --dur-slow:  420ms;
+
+  /* --- Layout ------------------------------------------------------------- */
+  --sidebar-w:  256px;
+  --topbar-h:   72px;
+  --page-max:   1560px;
+  --ai-rail-w:  340px;
+}

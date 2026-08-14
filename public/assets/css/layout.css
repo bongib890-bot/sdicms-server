@@ -1,0 +1,253 @@
+/* ==========================================================================
+   SDICMS — Layout
+   App shell, navigation chrome, and the 12-column bento grid.
+   ========================================================================== */
+
+/* --- Shell ---------------------------------------------------------------
+   Sidebar is fixed; the main column scrolls independently so the navigation
+   never leaves the screen during a long case list.                          */
+.shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  padding: var(--s-5) var(--s-4);
+  background: linear-gradient(180deg, rgba(18,26,43,0.92), rgba(11,16,32,0.92));
+  border-right: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-2) var(--s-3);
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(140deg, var(--primary), var(--secondary));
+  box-shadow: 0 6px 18px rgba(27, 75, 145, 0.42);
+  color: #fff;
+}
+
+.brand__name {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.brand__sub {
+  font-size: var(--fs-micro);
+  color: var(--muted-dim);
+  letter-spacing: 0.04em;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.nav__section {
+  margin: var(--s-4) 0 var(--s-2);
+  padding-left: var(--s-3);
+}
+
+.nav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 10px var(--s-3);
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  background: none;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  transition: background var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+
+.nav__item svg { flex: 0 0 18px; opacity: 0.85; }
+
+.nav__item:hover {
+  background: var(--glass-hi);
+  color: var(--text-body);
+  transform: translateX(2px);
+}
+
+.nav__item--active {
+  background: linear-gradient(90deg, rgba(27, 75, 145, 0.24), rgba(27, 75, 145, 0.05));
+  color: var(--text);
+}
+
+.nav__item--active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
+}
+
+.nav__count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--muted-dim);
+}
+
+/* Station context block pinned to the bottom of the sidebar. */
+.station-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3);
+  border-radius: var(--r-md);
+  background: var(--glass-hi);
+  border: 1px solid var(--line);
+}
+
+.station-tag__name { font-size: var(--fs-sm); color: var(--text-body); font-weight: 500; }
+.station-tag__code { font-size: var(--fs-micro); }
+
+/* ==========================================================================
+   Main column
+   ========================================================================== */
+.main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  height: var(--topbar-h);
+  padding: 0 var(--s-6);
+  background: rgba(11, 16, 32, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+
+.page {
+  padding: var(--s-6);
+  max-width: var(--page-max);
+  width: 100%;
+}
+
+.page__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-5);
+  margin-bottom: var(--s-6);
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Bento grid
+   12 columns. Cards declare their span; nothing else touches the grid.
+   ========================================================================== */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--s-5);
+  align-items: start;
+}
+
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-9  { grid-column: span 9; }
+.col-12 { grid-column: span 12; }
+
+/* ==========================================================================
+   Responsive — desktop first
+   ========================================================================== */
+
+@media (max-width: 1440px) {
+  .col-3 { grid-column: span 4; }
+}
+
+@media (max-width: 1200px) {
+  :root { --sidebar-w: 220px; }
+  .col-3, .col-4 { grid-column: span 6; }
+  .col-5, .col-7 { grid-column: span 12; }
+  .page { padding: var(--s-5); }
+}
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+
+  .sidebar {
+    position: fixed;
+    z-index: 60;
+    left: 0; top: 0;
+    width: 268px;
+    transform: translateX(-100%);
+    transition: transform var(--dur-mid) var(--ease);
+  }
+  .sidebar--open { transform: none; box-shadow: var(--shadow-lg); }
+
+  .scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(4, 7, 16, 0.62);
+    backdrop-filter: blur(2px);
+    animation: fade var(--dur-fast) var(--ease);
+  }
+
+  .col-6, .col-8, .col-9 { grid-column: span 12; }
+  .topbar { padding: 0 var(--s-4); }
+}
+
+@media (max-width: 620px) {
+  .col-3, .col-4 { grid-column: span 12; }
+  .page { padding: var(--s-4); }
+  .bento { gap: var(--s-4); }
+}
+
+/* The mobile menu button only exists below the sidebar breakpoint. */
+.menu-btn { display: none; }
+@media (max-width: 900px) { .menu-btn { display: inline-grid; } }

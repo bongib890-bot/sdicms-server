@@ -1,0 +1,38 @@
+{
+  "name": "sdicms-server",
+  "version": "1.0.0",
+  "description": "Smart Digital Investigation and Case Management System \u2014 API server",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "db:setup": "node database/setup.js",
+    "db:seed": "node database/seed.js",
+    "db:reset": "node database/setup.js && node database/seed.js && node database/expand.js",
+    "check": "node check.js",
+    "db:expand": "node database/expand.js"
+  },
+  "author": "Bongiwe, Miranda, Shalom, Tony, Lukho, Lerato",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

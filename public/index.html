@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in — SDICMS</title>
+  <meta name="description" content="Smart Digital Investigation and Case Management System — secure sign in.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/tokens.css?v=saps1">
+  <link rel="stylesheet" href="assets/css/base.css?v=saps1">
+  <link rel="stylesheet" href="assets/css/components.css?v=saps1">
+  <link rel="stylesheet" href="assets/css/login.css?v=saps1">
+</head>
+<body>
+
+  <main class="auth">
+
+    <section class="auth__form-side">
+      <div class="auth__box">
+
+        <div class="auth__brand">
+          <div class="brand__mark" id="brandMark"></div>
+          <div>
+            <div class="brand__name">SDICMS</div>
+            <div class="brand__sub">Investigation &amp; Case Management</div>
+          </div>
+        </div>
+
+        <h1 class="auth__title">Sign in to the command system</h1>
+        <p class="auth__sub">Use your service credentials. All sign-in attempts are recorded.</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field" id="fieldEmail">
+            <label class="field__label" for="email">Service email</label>
+            <div class="field__wrap" id="emailWrap"></div>
+            <div class="field__error" id="emailError"></div>
+          </div>
+
+          <div class="field" id="fieldPassword">
+            <label class="field__label" for="password">Password</label>
+            <div class="field__wrap" id="passwordWrap"></div>
+            <div class="field__error" id="passwordError"></div>
+          </div>
+
+          <div class="auth__row">
+            <label class="check">
+              <input type="checkbox" id="remember">
+              <span>Keep me signed in on this device</span>
+            </label>
+            <a href="#" id="forgotLink">Reset password</a>
+          </div>
+
+          <button class="btn btn--primary btn--block" type="submit" id="submitBtn">Sign in</button>
+        </form>
+
+        <div class="roles">
+          <div class="eyebrow">Prototype — sign in as</div>
+          <div class="roles__grid" id="roleGrid"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <aside class="auth__side">
+      <div class="eyebrow" style="color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--success);display:inline-block;animation:pulse-dot 2.2s var(--ease) infinite"></span>
+        LIVE NATIONAL OVERVIEW — READ-ONLY, NO SIGN-IN REQUIRED
+      </div>
+      <h2 class="auth__headline">Every docket <em>accounted for</em>, end to end.</h2>
+      <p class="auth__copy">
+        This panel is a live snapshot pulled from every station on the system right
+        now — not a demo graphic. Case records, exhibits and custody transfers are
+        held in one place, with a tamper-evident trail behind every action taken on
+        them.
+      </p>
+
+      <div class="auth__stats" id="authStats"></div>
+      <p class="table__sub" style="margin-top:-8px;margin-bottom:20px;color:var(--muted-dim)">
+        Totals across every registered station, refreshed on load.
+      </p>
+
+      <div class="auth__ticker">
+        <div class="eyebrow" style="margin-bottom:8px">Recent activity, most recent station actions</div>
+        <div id="ticker"></div>
+      </div>
+    </aside>
+
+  </main>
+
+  <div class="toasts"></div>
+
+  <script src="assets/js/ui.js?v=saps2"></script>
+  <script src="assets/js/api.js?v=saps2"></script>
+  <script src="assets/js/store.js?v=saps2"></script>
+  <script src="assets/js/login.js?v=saps2"></script>
+</body>
+</html>

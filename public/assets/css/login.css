@@ -1,0 +1,273 @@
+/* ==========================================================================
+   SDICMS — Login page
+   Split screen: credentials on the left, live operational context on the
+   right. The right panel exists to make the point that this is a command
+   system, not a form.
+   ========================================================================== */
+
+.auth {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  min-height: 100vh;
+}
+
+/* --- Left: credentials --------------------------------------------------- */
+.auth__form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-8) var(--s-6);
+}
+
+.auth__box {
+  width: 100%;
+  max-width: 420px;
+  animation: rise var(--dur-slow) var(--ease-out);
+}
+
+.auth__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-8);
+}
+
+.auth__title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: var(--s-2);
+}
+
+.auth__sub {
+  font-size: var(--fs-body);
+  color: var(--muted);
+  margin-bottom: var(--s-6);
+}
+
+.field { margin-bottom: var(--s-4); }
+
+.field__label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-body);
+  margin-bottom: var(--s-2);
+}
+
+.field__wrap { position: relative; }
+
+.field__wrap svg {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-dim);
+  pointer-events: none;
+}
+
+.field input {
+  width: 100%;
+  padding: 13px var(--s-4) 13px 42px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: rgba(18, 26, 43, 0.72);
+  color: var(--text);
+  font-size: var(--fs-body);
+  transition: border-color var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease);
+}
+
+.field input::placeholder { color: var(--muted-dim); }
+
+.field input:focus {
+  outline: none;
+  border-color: rgba(27, 75, 145, 0.70);
+  background: rgba(27, 75, 145, 0.07);
+  box-shadow: 0 0 0 4px rgba(27, 75, 145, 0.14);
+}
+
+.field--error input { border-color: rgba(239, 68, 68, 0.65); }
+
+.field__error {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: var(--fs-xs);
+  color: #FCA5A5;
+}
+.field--error .field__error { display: flex; }
+
+.field__toggle {
+  position: absolute;
+  right: 8px; top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 0;
+  padding: 6px 8px;
+  border-radius: var(--r-xs);
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+.field__toggle:hover { color: var(--accent); background: var(--glass-hi); }
+
+.auth__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: var(--s-5) 0;
+  font-size: var(--fs-sm);
+}
+
+.check { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--muted); cursor: pointer; }
+.check input { accent-color: var(--primary); width: 15px; height: 15px; }
+
+/* --- Role picker ---------------------------------------------------------
+   Prototype affordance: selects which dashboard to open. In the real build
+   the role comes from the JWT, not from a button.                          */
+.roles {
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.roles__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+}
+
+.role-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 10px var(--s-3);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--glass-hi);
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  text-align: left;
+  transition: all var(--dur-fast) var(--ease);
+}
+
+.role-btn svg { flex: 0 0 16px; }
+.role-btn:hover { color: var(--text-body); border-color: var(--line-strong); }
+
+.role-btn--on {
+  color: var(--text);
+  border-color: rgba(27, 75, 145, 0.70);
+  background: rgba(27, 75, 145, 0.16);
+}
+
+/* --- Right: operational context ------------------------------------------ */
+.auth__side {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--s-5);
+  padding: var(--s-8) var(--s-7);
+  border-left: 1px solid var(--line);
+  background:
+    radial-gradient(700px 500px at 80% 20%, rgba(27, 75, 145, 0.20), transparent 60%),
+    radial-gradient(600px 500px at 20% 90%, rgba(212, 175, 55, 0.12), transparent 60%),
+    rgba(18, 26, 43, 0.42);
+  overflow: hidden;
+}
+
+/* Faint grid — a command-centre surface, not a decorative pattern. */
+.auth__side::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 78%);
+}
+
+.auth__side > * { position: relative; }
+
+.auth__headline {
+  font-size: 34px;
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--text);
+  max-width: 15ch;
+}
+
+.auth__headline em {
+  font-style: normal;
+  /* Gold fading to the brighter primary blue, not the near-black secondary —
+     a gradient into secondary would fade to near-invisible against the dark
+     background. */
+  background: linear-gradient(100deg, var(--accent), #4C7FC4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.auth__copy { font-size: var(--fs-body); color: var(--muted); max-width: 46ch; }
+
+.auth__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+}
+
+.mini {
+  padding: var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.mini__num {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.mini__cap { font-size: var(--fs-xs); color: var(--muted-dim); margin-top: 2px; }
+
+.auth__ticker {
+  margin-top: var(--s-4);
+  padding: var(--s-4);
+  border-radius: var(--r-md);
+  background: rgba(11, 16, 32, 0.55);
+  border: 1px solid var(--line);
+}
+
+.tick {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  padding: 7px 0;
+}
+.tick .mono { color: var(--text-body); }
+
+/* --- Responsive ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .auth { grid-template-columns: minmax(0, 1fr); }
+  .auth__side { display: none; }
+}
+
+@media (max-width: 520px) {
+  .auth__form-side { padding: var(--s-6) var(--s-4); }
+  .roles__grid { grid-template-columns: 1fr; }
+}

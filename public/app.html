@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command centre — SDICMS</title>
+  <meta name="description" content="SDICMS role-based investigation command centre.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/tokens.css?v=saps1">
+  <link rel="stylesheet" href="assets/css/base.css?v=saps1">
+  <link rel="stylesheet" href="assets/css/layout.css?v=saps1">
+  <link rel="stylesheet" href="assets/css/components.css?v=saps1">
+  <link rel="stylesheet" href="assets/css/app.css?v=saps1">
+</head>
+<body>
+
+  <div class="shell">
+
+    <!-- ================= Sidebar ================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="brand">
+        <div class="brand__mark" id="brandMark"></div>
+        <div>
+          <div class="brand__name">SDICMS</div>
+          <div class="brand__sub" id="brandSub">Command centre</div>
+        </div>
+      </div>
+
+      <div class="nav" id="nav"></div>
+
+      <div class="station-tag" id="stationTag"></div>
+    </nav>
+
+    <!-- ================= Main ================= -->
+    <div class="main">
+
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open navigation"></button>
+
+        <div class="search">
+          <label class="sr-only" for="globalSearch">Search dockets</label>
+          <span id="searchIcon"></span>
+          <input type="search" id="globalSearch"
+                 placeholder="Search dockets by number, title or category — press Enter">
+          <span class="search__hint">/</span>
+        </div>
+
+        <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+          <button class="icon-btn" id="aiBtn" aria-label="Open the investigation copilot"></button>
+          <button class="icon-btn" id="bellBtn" aria-label="Notifications"></button>
+          <div class="profile" id="profile"></div>
+        </div>
+      </header>
+
+      <!-- Every routed view renders here -->
+      <main class="page" id="view" aria-live="polite"></main>
+
+    </div>
+  </div>
+
+  <div class="toasts"></div>
+
+  <script src="assets/js/ui.js?v=saps1"></script>
+  <script src="assets/js/forms.js?v=saps1"></script>
+  <script src="assets/js/api.js?v=saps1"></script>
+  <script src="assets/js/store.js?v=saps1"></script>
+  <script src="assets/js/views-core.js?v=saps1"></script>
+  <script src="assets/js/views-more.js?v=saps1"></script>
+  <script src="assets/js/app.js?v=saps1"></script>
+</body>
+</html>
